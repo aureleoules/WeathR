@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fafafa;
+}
+
+a {
+    text-decoration: none
+}
+a:hover {
+    text-decoration: none
+}
+.drawer-item {
+    padding-left: 18px!important;
+    line-height: 56px!important;
+}
+
+.fixed-navbar {
+    position: fixed !important;
+    top: 0;
+}
+
+.centered {
+    text-align: center;
+}
+
+.weather-main {
+    margin-top: 50px
+}
+
+.weather-div {
+    min-height: 500px
+}
+
+.home-div {
+    padding-top: 80px;
+    background-color: #00bcd4;
+    height: 500px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.remove-shadow {
+    box-shadow: none !important;
+}
+
+.home-text {
+    margin: -15px auto 0px;
+    color: #fff;
+    max-width: 575px;
+}
+
+.home-text>h1 {
+    font-weight: 300;
+    font-size: 56px;
+    color: rgba(255, 255, 255, 0.870588);
+}
+
+.home-text>h2 {
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.870588);
+    font-size: 24px;
+}
+
+.home-buttons {
+    margin-top: 30px
+}
+
+.drawer-bottom-text {
+    position: absolute;
+    bottom: 0;
+    margin-left: 18px;
+    margin-bottom: 5px
+}
