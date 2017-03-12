@@ -5,8 +5,8 @@ import {List} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import WeatherItem from './WeatherItem';
-import '../css/weather-icons.min.css';
-import weatherIcons from '../json/weatherIcons.json';
+import '../../css/weather-icons.min.css';
+import weatherIcons from '../../json/weatherIcons.json';
 
 class Weather extends React.Component {
 
