@@ -7,6 +7,9 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 
 class WeatherItem extends React.Component {
+    goToForecast = (city) => {
+        this.context.router.transitionTo(city);
+    }
     render() {
         const iconButtonElement = (
             <IconButton touch={true} tooltip="more" tooltipPosition="bottom-left">
@@ -21,15 +24,20 @@ class WeatherItem extends React.Component {
         );
 
         return (
-            <ListItem
-                leftAvatar={<i className={this.props.iconName}></i>}
-                primaryText={this.props.title}
-                secondaryText={this.props.subtitle}
-                secondaryTextLines={1}
-                onTouchTap={this.props.onTouchTap}
-                rightIconButton={rightIconMenu}
-            />
+            <div>
+                <ListItem
+                    leftAvatar={<i className={this.props.iconName}></i>}
+                    primaryText={this.props.title}
+                    secondaryText={this.props.subtitle}
+                    secondaryTextLines={1}
+                    onTouchTap={() => this.goToForecast(`/forecast/${this.props.title}`)}
+                    rightIconButton={rightIconMenu}
+                />
+            </div>
         )
+    }
+    static contextTypes = {
+        router: React.PropTypes.object
     }
 }
 

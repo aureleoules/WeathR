@@ -72,3 +72,11 @@ a:hover {
     margin-left: 18px;
     margin-bottom: 5px
 }
+
+.forecast-header-div {
+    padding-top: 80px;
+    background-color: #00bcd4;
+    height: 500px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}

@@ -3,7 +3,9 @@ import React from 'react';
 class Forecast extends React.Component {
     render() {
         return(
-            <div></div>
+            <div>
+                <h1>Hey</h1>
+            </div>
         )
     }
 }

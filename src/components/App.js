@@ -1,10 +1,10 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter, Match } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Navbar from './Navbar/Navbar';
-import WeatherApp from './Weather/WeatherApp';
+import Navbar from './Navbar';
+import WeatherApp from './WeatherApp';
+import ForecastApp from './ForecastApp';
 
-// import About from './About';
 class App extends React.Component {
     render() {
         var navbarItems = [
@@ -19,13 +19,13 @@ class App extends React.Component {
         return (
             <MuiThemeProvider>
                 <div>
-                    <Router>
+                    <BrowserRouter>
                         <div>
                             <Navbar navbarItems={navbarItems} drawerTitle="WeathR"/>
-                            <Route exact path="/" component={WeatherApp}/>
-                            {/* <Route path="/about" component={About}/> */}
+                            <Match exactly pattern="/" component={WeatherApp}/>
+                            <Match pattern="/forecast/:city" component={ForecastApp}/>
                         </div>
-                    </Router>
+                    </BrowserRouter>
                 </div>
             </MuiThemeProvider>
         )
