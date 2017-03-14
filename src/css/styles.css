@@ -7,9 +7,11 @@ body {
 a {
     text-decoration: none
 }
+
 a:hover {
     text-decoration: none
 }
+
 .drawer-item {
     padding-left: 18px!important;
     line-height: 56px!important;
@@ -74,9 +76,44 @@ a:hover {
 }
 
 .forecast-header-div {
-    padding-top: 80px;
+    padding-top: 50px;
     background-color: #00bcd4;
     height: 500px;
     font-family: 'Roboto', sans-serif;
     text-align: center;
+}
+
+.forecast-header-top {
+    padding-top: 75px;
+    text-align: center;
+    color: #fafafa;
+}
+
+.forecast-header-icon {
+    font-size: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.forecast-header-degree {
+    font-size: 60px;
+    font-weight: 400;
+    margin-left: 25px;
+}
+
+.forecast-header-desc {
+    font-size: 35px;
+    font-weight: 100;
+    padding-top: 25px;
+    display: block;
+    margin-left: -35px
+}
+
+.center-block {
+    float: none !important
+}
+
+.forecast-card {
+    margin-top: 30px
 }

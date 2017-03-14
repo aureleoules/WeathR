@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Navbar from './Navbar';
 import WeatherApp from './WeatherApp';
 import ForecastApp from './ForecastApp';
-
+import '../css/weather-icons.min.css';
 class App extends React.Component {
     render() {
         var navbarItems = [
