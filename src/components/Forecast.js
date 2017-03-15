@@ -35,7 +35,7 @@ class Forecast extends React.Component {
                     Object.keys(nestedObjs[key]).map((itemJ, keyJ) => {
                         averageTemp += nestedObjs[item][itemJ].main.temp;
                         averageCount++;
-                        nestedItems[key].push(<ListItem key={keyJ} primaryText={itemJ} secondaryText={Math.round(nestedObjs[item][itemJ].main.temp) + "°C"}/>);
+                        nestedItems[key].push(<ListItem key={keyJ} primaryText={itemJ.substring(0, itemJ.length - 3)} secondaryText={Math.round(nestedObjs[item][itemJ].main.temp) + "°C"}/>);
                     });
                     average.push(Math.round(averageTemp / averageCount));
                 }
@@ -49,7 +49,6 @@ class Forecast extends React.Component {
                         primaryText={item}
                         // secondaryText={average[key] + "°C"}
                         secondaryTextLines={1}
-                        initiallyOpen={key === 0}
                         primaryTogglesNestedList={true}
                         nestedItems={nestedItems[key]}
                     />
@@ -64,7 +63,6 @@ class Forecast extends React.Component {
                             <div className="forecast-list">
                                 <List>
                                     {items}
-                                    <Divider inset={true}/>
                                 </List>
                             </div>
                         </Card>

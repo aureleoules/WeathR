@@ -2,10 +2,10 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {List} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import WeatherItem from './WeatherItem';
 import weatherIcons from '../json/weatherIcons.json';
+import constant from '../constants/constants';
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -22,7 +22,7 @@ class Weather extends React.Component {
         const self = this;
         for (var i = 0; i < this.state.cities.length; i++) {
             city = this.state.cities[i];
-            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=61137e48c84896f2f196f1788a7d9592`).then(function(response) {
+            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${constant.API_KEY}`).then(function(response) {
                 if (response.status >= 400) {
                     throw new Error("Bad response from server!");
                 }
@@ -128,7 +128,6 @@ class Weather extends React.Component {
                             {this.state.cities.length > 0 && <List>
                                 <Subheader>Saved cities:</Subheader>
                                 {items}
-                                <Divider inset={true}/>
                             </List>
                             }
                         </div>

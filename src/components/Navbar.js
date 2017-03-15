@@ -30,7 +30,7 @@ class Navbar extends React.Component {
         });
         return (
             <div>
-                <AppBar className="remove-shadow fixed-navbar" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle}/>
+                <AppBar title={this.props.navTitle} className="remove-shadow fixed-navbar" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle}/>
                 <Drawer docked={false} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
                     <AppBar title={this.props.drawerTitle} titleStyle={titleStyle}showMenuIconButton={false}/>
                     {items}
