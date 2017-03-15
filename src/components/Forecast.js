@@ -22,25 +22,52 @@ class Forecast extends React.Component {
                 <MenuItem onTouchTap={this.props.deleteBtn}>Delete</MenuItem>
             </IconMenu>
         );
+        var items;
+        var nestedObjs = {};
+        var nestedItems = [];
+        var average = [];
+        if(this.props.details) {
+            nestedObjs = Object.keys(this.props.details).map((item, key) => this.props.details[item]);
+            Object.keys(nestedObjs).map((item, key) => {
+                    var averageTemp = 0;
+                    var averageCount = 0;
+                    nestedItems.push([]);
+                    Object.keys(nestedObjs[key]).map((itemJ, keyJ) => {
+                        averageTemp += nestedObjs[item][itemJ].main.temp;
+                        averageCount++;
+                        nestedItems[key].push(<ListItem key={keyJ} primaryText={itemJ} secondaryText={Math.round(nestedObjs[item][itemJ].main.temp) + "°C"}/>);
+                    });
+                    average.push(Math.round(averageTemp / averageCount));
+                }
+            );
+            console.log(average);
+            items = Object
+                .keys(this.props.details)
+                .map((item, key) =>
+                    <ListItem
+                        key={key}
+                        primaryText={item}
+                        // secondaryText={average[key] + "°C"}
+                        secondaryTextLines={1}
+                        initiallyOpen={key === 0}
+                        primaryTogglesNestedList={true}
+                        nestedItems={nestedItems[key]}
+                    />
+                );
+        }
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-10 center-block">
                         <Card>
                             <CardHeader className="forecast-card"/>
-                                <div className="forecast-list">
-                                    <List>
-                                        <ListItem primaryText="16°" secondaryText="DARK CLOUDS" secondaryTextLines={1}/>
-                                        <ListItem primaryText="16°" secondaryText="DARK CLOUDS" secondaryTextLines={1}/>
-                                        <ListItem primaryText="16°" secondaryText="DARK CLOUDS" secondaryTextLines={1}/>
-                                        <ListItem primaryText="16°" secondaryText="DARK CLOUDS" secondaryTextLines={1}/>
-                                        <ListItem primaryText="16°" secondaryText="DARK CLOUDS" secondaryTextLines={1}/>
-                                        <ListItem primaryText="16°" secondaryText="DARK CLOUDS" secondaryTextLines={1}/>
-                                        <Divider inset={true}/>
-                                    </List>
-                                </div>
+                            <div className="forecast-list">
+                                <List>
+                                    {items}
+                                    <Divider inset={true}/>
+                                </List>
+                            </div>
                         </Card>
-
 
                     </div>
                 </div>
