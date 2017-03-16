@@ -24,6 +24,7 @@ class WeatherApp extends React.Component {
                 <Header startBtn={() => {
                     this.scrollWeather()
                 }}/>
+                
                 <Weather ref={(input) => {
                     this.weather = input
                 }}/>

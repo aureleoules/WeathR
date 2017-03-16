@@ -1,27 +1,26 @@
 import React from 'react';
 import {List} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 import {ListItem} from 'material-ui/List';
-import {grey400} from 'material-ui/styles/colors';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {Card, CardHeader} from 'material-ui/Card';
+import weatherIcons from '../json/weatherIcons.json';
 class Forecast extends React.Component {
-    render() {
-        const iconButtonElement = (
-            <IconButton touch={true} tooltip="more" tooltipPosition="bottom-left">
-                <MoreVertIcon color={grey400}/>
-            </IconButton>
-        );
 
-        const rightIconMenu = (
-            <IconMenu iconButtonElement={iconButtonElement}>
-                <MenuItem onTouchTap={this.props.deleteBtn}>Delete</MenuItem>
-            </IconMenu>
-        );
+    getForecastIcon = (codeJ) => {
+        if (codeJ) {
+            var prefix = 'wi wi-';
+            var code = codeJ;
+            var icon = weatherIcons[code].icon;
+
+            if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+                icon = 'day-' + icon;
+            }
+
+            // Finally tack on the prefix.
+            return icon = prefix + icon;
+        }
+        return null;
+    }
+    render() {
         var items;
         var nestedObjs = {};
         var nestedItems = [];
@@ -35,7 +34,13 @@ class Forecast extends React.Component {
                     Object.keys(nestedObjs[key]).map((itemJ, keyJ) => {
                         averageTemp += nestedObjs[item][itemJ].main.temp;
                         averageCount++;
-                        nestedItems[key].push(<ListItem key={keyJ} primaryText={itemJ.substring(0, itemJ.length - 3)} secondaryText={Math.round(nestedObjs[item][itemJ].main.temp) + "°C"}/>);
+                        nestedItems[key].push(
+                            <ListItem
+                                key={keyJ}
+                                leftAvatar={<i className={this.getForecastIcon(nestedObjs[item][itemJ].weather[0].id)}></i>}
+                                primaryText={itemJ.substring(0, itemJ.length - 3)}
+                                secondaryText={nestedObjs[item][itemJ].weather[0].description.toUpperCase() + " • " + Math.round(nestedObjs[item][itemJ].main.temp) + "°C"}
+                            />);
                     });
                     average.push(Math.round(averageTemp / averageCount));
                 }
