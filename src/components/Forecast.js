@@ -1,7 +1,7 @@
 import React from 'react';
 import {List} from 'material-ui/List';
 import {ListItem} from 'material-ui/List';
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import weatherIcons from '../json/weatherIcons.json';
 class Forecast extends React.Component {
 
@@ -20,6 +20,18 @@ class Forecast extends React.Component {
         }
         return null;
     }
+
+
+
+    getDayFromDate = (date_input) => {
+        var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; //week apparently starts on sunday
+        var date = new Date(date_input);
+        var dayId = date.getDay();
+        console.log(date_input);
+        console.log(dayId);
+        return days[dayId];
+    }
+
     render() {
         var items;
         var nestedObjs = {};
@@ -51,7 +63,7 @@ class Forecast extends React.Component {
                 .map((item, key) =>
                     <ListItem
                         key={key}
-                        primaryText={item}
+                        primaryText={this.getDayFromDate(item)}
                         // secondaryText={average[key] + "°C"}
                         secondaryTextLines={1}
                         primaryTogglesNestedList={true}
@@ -63,13 +75,13 @@ class Forecast extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-10 center-block">
-                        <Card>
-                            <CardHeader className="forecast-card"/>
-                            <div className="forecast-list">
+                        <Card initiallyExpanded={true}>
+                            <CardHeader className="forecast-card" title="Forecast" actAsExpander={true} showExpandableButton={true}/>
+                            <CardText className="forecast-list" expandable={true}>
                                 <List>
                                     {items}
                                 </List>
-                            </div>
+                            </CardText>
                         </Card>
 
                     </div>
